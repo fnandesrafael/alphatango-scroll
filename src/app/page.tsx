@@ -1,33 +1,33 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
 
 export default function Home() {
+  const websiteContent = useRef<HTMLElement>(
+    document.querySelector('#website-content') as HTMLElement,
+  );
+
+  const handleContentLock = () => {
+    const { scrollY } = window;
+
+    if (scrollY < 1000) {
+      websiteContent.current.style.position = 'fixed';
+      websiteContent.current.style.top = '0px';
+    } else {
+      websiteContent.current.style.position = 'absolute';
+      websiteContent.current.style.top = '1000px';
+    }
+  };
+
   useEffect(() => {
-    const header = document.querySelector('#header');
-    const letters = document.querySelectorAll('#letter');
-    const logo = document.querySelector('#logo a');
-    const websiteContent: HTMLElement = document.querySelector(
-      '#website-content',
-    ) as HTMLElement;
+    window.addEventListener('scroll', handleContentLock);
 
-    const lastScroll = 0;
-    const sectionHeight = 150;
-
-    window.addEventListener('scroll', () => {
-      const { scrollY } = window;
-
-      if (scrollY < 1000) {
-        websiteContent.style.position = 'fixed';
-        websiteContent.style.top = '0px';
-      } else {
-        websiteContent.style.position = 'absolute';
-        websiteContent.style.top = '1000px';
-      }
-    });
+    return () => {
+      window.removeEventListener('scroll', handleContentLock);
+    };
   }, []);
 
   return (
@@ -36,7 +36,11 @@ export default function Home() {
 
       <Navbar />
 
-      <section id="website-content" className="top-0 w-full pb-16 pt-[400px]">
+      <section
+        id="website-content"
+        className="top-0 w-full pb-16 pt-[400px]"
+        ref={websiteContent}
+      >
         <div
           id="website-content-wrapper"
           className="mx-auto flex w-[80%] flex-col items-center gap-4"
