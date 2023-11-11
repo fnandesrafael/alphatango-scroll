@@ -1,21 +1,37 @@
+'use client';
+
+import gsap from 'gsap';
+import Link from 'next/link';
+import { useEffect } from 'react';
+
 export default function Navbar() {
+  useEffect(() => {
+    const navbar = document.querySelector('#nav') as HTMLElement;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        gsap.to(navbar, {
+          opacity: 1,
+        });
+      } else if (window.screenY < 500) {
+        gsap.to(navbar, {
+          opacity: 0,
+        });
+      }
+    });
+  }, []);
+
   return (
     <nav
       id="nav"
-      className="fixed top-0 flex w-full items-center justify-center py-4"
+      className="fixed top-0 z-20 flex w-full origin-center items-center justify-center py-4 opacity-0"
     >
-      <div id="logo" className="relative">
-        <a
-          href="#"
-          className="relative top-2 font-display text-sm uppercase sm:top-5 md:text-base"
-        >
-          Alphaflame
-        </a>
-        <div
-          id="logo-revealer"
-          className="absolute top-0 z-10 h-full w-full origin-bottom after:absolute after:top-2 after:h-full after:w-full after:bg-[#0f0f0f] after:content-[''] after:sm:top-5"
-        />
-      </div>
+      <Link
+        href="#"
+        className="relative top-2 font-display text-sm uppercase ease-in-out sm:top-5 md:text-base"
+      >
+        Alphaflame
+      </Link>
     </nav>
   );
 }

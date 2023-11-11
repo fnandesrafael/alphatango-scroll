@@ -31,19 +31,15 @@ export default function Home() {
   }, []);
 
   return (
-    <main id="container">
+    <main id="container" className="min-h-[400vh]">
       <Header />
 
       <Navbar />
 
-      <section
-        id="content"
-        className="w-full pb-16 pt-[400px]"
-        ref={contentRef}
-      >
+      <section id="content" className="w-full pt-[400px]" ref={contentRef}>
         <div
           id="container"
-          className="mx-auto flex w-[70%] flex-col items-center gap-4 text-center text-[#757575]"
+          className="mx-auto flex w-[70%] flex-col items-center gap-10 text-center text-[#757575]"
         >
           <h1 className="mb-8 w-1/2 font-head text-3xl">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit.

@@ -39,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${bebasNeue.variable} ${roboto.variable} ${archivoBlack.variable}  h-full min-h-[400vh] w-full bg-[#0f0f0f] font-sans text-white`}
+        className={`${bebasNeue.variable} ${roboto.variable} ${archivoBlack.variable} h-full w-full scroll-smooth bg-[#0f0f0f] font-sans text-white`}
       >
         {children}
       </body>
