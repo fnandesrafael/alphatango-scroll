@@ -1,8 +1,62 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+
 export default function Header() {
+  const headerRef = useRef<HTMLElement>(
+    document.querySelector('#header') as HTMLElement,
+  );
+  const sectionHeight = 150;
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const letters = document.querySelectorAll('#letter');
+      const orderPairs = [
+        [4, 5],
+        [3, 6],
+        [2, 7],
+        [1, 8],
+        [0, 9],
+      ];
+
+      orderPairs.forEach((pair, index) => {
+        const { scrollY } = window;
+        const initScroll = sectionHeight * index;
+
+        if (scrollY >= initScroll) {
+          const moveFactor = Math.min(
+            1,
+            (scrollY - initScroll) / sectionHeight,
+          );
+
+          const translateY = -moveFactor * headerRef.current.offsetHeight;
+
+          pair.forEach((i) => {
+            const letter = letters[i];
+            gsap.to(letter, {
+              y: translateY,
+              zIndex: 10 - moveFactor,
+            });
+          });
+        } else {
+          pair.forEach((i) => {
+            const letter = letters[i];
+            gsap.to(letter, {
+              y: 0,
+              zIndex: 10,
+            });
+          });
+        }
+      });
+    });
+  });
+
   return (
     <header
       id="header"
-      className="fixed top-0 z-10 mt-12 flex w-full p-4 after:absolute after:-top-full after:left-0 after:z-10 after:h-full after:w-full after:bg-[#0f0f0f] after:content-['']"
+      ref={headerRef}
+      className="fixed top-0 z-10 mt-12 flex w-full p-4"
     >
       {'alphaflame'.split('').map((l, index) => (
         <span

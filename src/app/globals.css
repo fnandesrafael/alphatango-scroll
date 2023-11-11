@@ -26,3 +26,13 @@ img {
   object-fit: cover;
   width: auto;
 }
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3a3a3a;
+  border-radius: 0.5rem;
+}

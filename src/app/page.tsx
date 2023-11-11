@@ -6,23 +6,23 @@ import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
 
 export default function Home() {
-  const websiteContent = useRef<HTMLElement>(
+  const websiteContentRef = useRef<HTMLElement>(
     document.querySelector('#website-content') as HTMLElement,
   );
 
-  const handleContentLock = () => {
-    const { scrollY } = window;
-
-    if (scrollY < 1000) {
-      websiteContent.current.style.position = 'fixed';
-      websiteContent.current.style.top = '0px';
-    } else {
-      websiteContent.current.style.position = 'absolute';
-      websiteContent.current.style.top = '1000px';
-    }
-  };
-
   useEffect(() => {
+    const handleContentLock = () => {
+      const { scrollY } = window;
+
+      if (scrollY < 1000) {
+        websiteContentRef.current.style.position = 'fixed';
+        websiteContentRef.current.style.top = '0px';
+      } else {
+        websiteContentRef.current.style.position = 'absolute';
+        websiteContentRef.current.style.top = '1000px';
+      }
+    };
+
     window.addEventListener('scroll', handleContentLock);
 
     return () => {
@@ -39,7 +39,7 @@ export default function Home() {
       <section
         id="website-content"
         className="top-0 w-full pb-16 pt-[400px]"
-        ref={websiteContent}
+        ref={websiteContentRef}
       >
         <div
           id="website-content-wrapper"
