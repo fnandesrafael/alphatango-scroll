@@ -16,7 +16,7 @@ const config: Config = {
       fontFamily: {
         display: ['var(--font-archivo-black)'],
         head: ['var(--font-bebas-neue)'],
-        sans: ['var(--font-nunito)'],
+        sans: ['var(--font-roboto)'],
       },
     },
   },

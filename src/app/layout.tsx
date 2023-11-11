@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Archivo_Black, Bebas_Neue, Nunito } from 'next/font/google';
+import { Archivo_Black, Bebas_Neue, Roboto } from 'next/font/google';
 import './globals.css';
 
 const archivoBlack = Archivo_Black({
@@ -18,9 +18,9 @@ const bebasNeue = Bebas_Neue({
   display: 'swap',
 });
 
-const nunito = Nunito({
-  weight: ['200', '300', '400', '500', '600'],
-  variable: '--font-nunito',
+const roboto = Roboto({
+  weight: ['400'],
+  variable: '--font-roboto',
   preload: true,
   subsets: ['latin'],
   display: 'swap',
@@ -39,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${bebasNeue.variable} ${nunito.variable} ${archivoBlack.variable} flex h-full w-full flex-col items-center bg-[#0f0f0f] font-sans text-white`}
+        className={`${bebasNeue.variable} ${roboto.variable} ${archivoBlack.variable}  h-full min-h-[400vh] w-full bg-[#0f0f0f] font-sans text-white`}
       >
         {children}
       </body>
