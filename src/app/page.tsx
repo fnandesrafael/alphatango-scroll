@@ -8,8 +8,9 @@ export default function Home() {
       id="container"
       className="container flex flex-col items-center justify-center px-[3vw]"
     >
-      <Navbar />
       <Header />
+
+      <Navbar />
 
       <section id="website-content">
         <div id="website-content-wrapper">
