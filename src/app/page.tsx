@@ -6,20 +6,20 @@ import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
 
 export default function Home() {
-  const websiteContentRef = useRef<HTMLElement>(
-    document.querySelector('#website-content') as HTMLElement,
+  const contentRef = useRef<HTMLElement>(
+    document.querySelector('#content') as HTMLElement,
   );
 
   useEffect(() => {
     const handleContentLock = () => {
       const { scrollY } = window;
 
-      if (scrollY < 1000) {
-        websiteContentRef.current.style.position = 'fixed';
-        websiteContentRef.current.style.top = '0px';
+      if (scrollY < 900) {
+        contentRef.current.style.position = 'fixed';
+        contentRef.current.style.top = '0px';
       } else {
-        websiteContentRef.current.style.position = 'absolute';
-        websiteContentRef.current.style.top = '1000px';
+        contentRef.current.style.position = 'absolute';
+        contentRef.current.style.top = '900px';
       }
     };
 
@@ -37,26 +37,28 @@ export default function Home() {
       <Navbar />
 
       <section
-        id="website-content"
-        className="top-0 w-full pb-16 pt-[400px]"
-        ref={websiteContentRef}
+        id="content"
+        className="w-full pb-16 pt-[400px]"
+        ref={contentRef}
       >
         <div
-          id="website-content-wrapper"
-          className="mx-auto flex w-[70%] flex-col items-center gap-4"
+          id="container"
+          className="mx-auto flex w-[70%] flex-col items-center gap-4 text-center text-[#757575]"
         >
-          <h1 className="mb-8 w-1/2 text-center font-head text-3xl text-[#757575]">
+          <h1 className="mb-8 w-1/2 font-head text-3xl">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit.
           </h1>
 
-          <Image
-            src="https://images.unsplash.com/photo-1599848609343-e0f4233d55f5?q=80&w=1456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            className="w-full overflow-hidden pb-12"
-            alt="Hero image of a lens flare."
-            height={800}
-            width={800}
-            priority
-          />
+          <div className="group mb-12 w-full overflow-hidden">
+            <Image
+              src="https://images.unsplash.com/photo-1545431766-45ff67845191?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              className="w-full object-cover transition-all duration-500 ease-in-out group-hover:scale-150 group-hover:blur-lg"
+              alt="Hero image of a lens flare."
+              height={800}
+              width={800}
+              priority
+            />
+          </div>
 
           <p className="text-lg">
             Mussum Ipsum, cacilds vidis litro abertis. Nulla id gravida magna,

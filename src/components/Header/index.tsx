@@ -7,56 +7,55 @@ export default function Header() {
   const headerRef = useRef<HTMLElement>(
     document.querySelector('#header') as HTMLElement,
   );
-  const sectionHeight = 150;
+
+  const handleLettersAnimation = () => {
+    const deadZone = 200;
+    const orderPairs = [
+      [4, 5],
+      [3, 6],
+      [2, 7],
+      [1, 8],
+      [0, 9],
+    ];
+    const letters = document.querySelectorAll('#letter');
+
+    orderPairs.forEach((pair, index) => {
+      const { scrollY } = window;
+      const letterScrollPoint = deadZone * index;
+      const moveFactor = (scrollY - letterScrollPoint) / deadZone;
+      const translateY = moveFactor * headerRef.current.offsetHeight;
+
+      if (scrollY > letterScrollPoint) {
+        pair.forEach((i) => {
+          const letter = letters[i];
+          gsap.to(letter, {
+            y: -translateY,
+          });
+        });
+      } else {
+        pair.forEach((i) => {
+          const letter = letters[i];
+          gsap.to(letter, {
+            y: 0,
+          });
+        });
+      }
+    });
+  };
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      const letters = document.querySelectorAll('#letter');
-      const orderPairs = [
-        [4, 5],
-        [3, 6],
-        [2, 7],
-        [1, 8],
-        [0, 9],
-      ];
+    window.addEventListener('scroll', handleLettersAnimation);
 
-      orderPairs.forEach((pair, index) => {
-        const { scrollY } = window;
-        const initScroll = sectionHeight * index;
-
-        if (scrollY >= initScroll) {
-          const moveFactor = Math.min(
-            1,
-            (scrollY - initScroll) / sectionHeight,
-          );
-
-          const translateY = -moveFactor * headerRef.current.offsetHeight;
-
-          pair.forEach((i) => {
-            const letter = letters[i];
-            gsap.to(letter, {
-              y: translateY,
-              zIndex: 10 - moveFactor,
-            });
-          });
-        } else {
-          pair.forEach((i) => {
-            const letter = letters[i];
-            gsap.to(letter, {
-              y: 0,
-              zIndex: 10,
-            });
-          });
-        }
-      });
-    });
+    return () => {
+      window.removeEventListener('scroll', handleLettersAnimation);
+    };
   });
 
   return (
     <header
       id="header"
       ref={headerRef}
-      className="fixed top-0 z-10 mt-12 flex w-full p-4"
+      className="pointer-events-none fixed top-0 z-10 mt-12 flex w-full p-4"
     >
       {'alphaflame'.split('').map((l, index) => (
         <span
