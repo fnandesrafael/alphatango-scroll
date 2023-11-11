@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 
 export default function Home() {
   return (
-    <main id="container">
+    <main id="container" className="bg-[#0f0f0f]">
       <Navbar />
       <Header />
 
@@ -13,9 +13,10 @@ export default function Home() {
           <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h1>
           <Image
             src="https://images.unsplash.com/photo-1599848609343-e0f4233d55f5?q=80&w=1456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
-            width={800}
+            alt="Hero image of a lens flare."
             height={800}
+            width={800}
+            priority
           />
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
