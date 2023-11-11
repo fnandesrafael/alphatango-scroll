@@ -14,6 +14,7 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       fontFamily: {
+        display: ['var(--font-archivo-black)'],
         head: ['var(--font-bebas-neue)'],
         sans: ['var(--font-nunito)'],
       },
