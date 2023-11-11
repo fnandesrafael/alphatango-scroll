@@ -43,7 +43,7 @@ export default function Home() {
       >
         <div
           id="website-content-wrapper"
-          className="mx-auto flex w-[80%] flex-col items-center gap-4"
+          className="mx-auto flex w-[70%] flex-col items-center gap-4"
         >
           <h1 className="mb-8 w-1/2 text-center font-head text-3xl text-[#757575]">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit.

@@ -22,11 +22,6 @@
   }
 }
 
-img {
-  object-fit: cover;
-  width: auto;
-}
-
 ::-webkit-scrollbar {
   background-color: transparent;
   width: 0.5rem;
