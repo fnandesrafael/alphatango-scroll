@@ -1,25 +1,22 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
 
 export default function Home() {
-  const contentRef = useRef<HTMLElement>(
-    document.querySelector('#content') as HTMLElement,
-  );
-
   useEffect(() => {
     const handleContentLock = () => {
       const { scrollY } = window;
+      const contentRef = document.querySelector('#content') as HTMLElement;
 
       if (scrollY < 900) {
-        contentRef.current.style.position = 'fixed';
-        contentRef.current.style.top = '0px';
+        contentRef.style.position = 'fixed';
+        contentRef.style.top = '0px';
       } else {
-        contentRef.current.style.position = 'absolute';
-        contentRef.current.style.top = '900px';
+        contentRef.style.position = 'absolute';
+        contentRef.style.top = '900px';
       }
     };
 
@@ -36,7 +33,7 @@ export default function Home() {
 
       <Navbar />
 
-      <section id="content" className="w-full pt-[400px]" ref={contentRef}>
+      <section id="content" className="w-full pt-[400px]">
         <div
           id="container"
           className="mx-auto flex w-[70%] flex-col items-center gap-10 text-center text-[#757575]"

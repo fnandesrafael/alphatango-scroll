@@ -1,14 +1,12 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import gsap from 'gsap';
 
 export default function Header() {
-  const headerRef = useRef<HTMLElement>(
-    document.querySelector('#header') as HTMLElement,
-  );
-
   const handleLettersAnimation = () => {
+    const headerRef = document.querySelector('#header') as HTMLElement;
+    const letters = document.querySelectorAll('#letter');
     const deadZone = 200;
     const orderPairs = [
       [4, 5],
@@ -17,13 +15,12 @@ export default function Header() {
       [1, 8],
       [0, 9],
     ];
-    const letters = document.querySelectorAll('#letter');
 
     orderPairs.forEach((pair, index) => {
       const { scrollY } = window;
       const letterScrollPoint = deadZone * index;
       const moveFactor = (scrollY - letterScrollPoint) / deadZone;
-      const translateY = moveFactor * headerRef.current.offsetHeight;
+      const translateY = moveFactor * headerRef.offsetHeight;
 
       if (scrollY > letterScrollPoint) {
         pair.forEach((i) => {
@@ -54,7 +51,6 @@ export default function Header() {
   return (
     <header
       id="header"
-      ref={headerRef}
       className="pointer-events-none fixed top-0 z-10 mt-12 flex w-full p-4"
     >
       {'alphaflame'.split('').map((l, index) => (
