@@ -77,7 +77,7 @@ export default function Home() {
       </main>
 
       <footer className="flex w-full items-center justify-center gap-2 bg-black py-4 font-head text-base uppercase text-[#757575]">
-        <h1>awwwards rebuild w/ react - @fnandesrafael</h1>
+        <h1>codegrid rebuild w/ react - @fnandesrafael</h1>
 
         <span>|</span>
 
